@@ -2,7 +2,7 @@ import pandas as pd
 from django.shortcuts import render
 
 from rest_framework.decorators import api_view
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponse
 from io import TextIOWrapper
 import csv
 import pandas
@@ -14,11 +14,27 @@ def recv_data(request):
     return JsonResponse(request.data, safe=False)
 
 
-@api_view(['GET', 'POST'])
-def fetch_file(request):
+@api_view(['POST'])
+def fetch_file(request, ewon_ip , file_path):
     if request == 'POST':
+        print(ewon_ip)
         print(request.data())
-    return JsonResponse(request.data, safe=False)
+
+        #thrw ftp get data
+
+
+
+    return JsonResponse({ewon_ip:file_path}, safe=False)
+
+# @api_view(['POST'])
+# def fetch_file(request):
+#     my_parameter = 'NOT RUN'
+#     if request.method == 'POST':
+#         print("Received POST data:", request.POST)
+#         my_parameter = request.POST.get('helo')
+#         print(my_parameter)
+#     return HttpResponse(f"You submitted: {my_parameter}")
+#     # return JsonResponse({"hi":"hii"}, safe=False)
 
 
 @api_view(['GET', 'POST'])

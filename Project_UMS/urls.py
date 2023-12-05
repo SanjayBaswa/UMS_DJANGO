@@ -21,5 +21,6 @@ from datalogging_api import views as dl
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('csv/', dl.read_csv),
-    path('fetchfile/',dl.fetch_file)
+    path('fetchfile/<str:ewon_ip>/<str:file_path>/',dl.fetch_file)
+    # path('fetchfile/',dl.fetch_file)
 ]
